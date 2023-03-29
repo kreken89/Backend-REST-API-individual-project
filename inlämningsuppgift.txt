@@ -1,0 +1,54 @@
+I denna inlämningsuppgift ska du bygga upp ett enkelt REST API till en webbshop med hjälp node.js och ramverket express. 
+
+
+
+Produkterna i din databas kan föreställa det du själv vill att dom ska, men alla produkter bör minst ha följande fält:
+
+Name
+Description
+Price
+ImageURL
+
+
+Betygskriterier
+
+
+Du ska ha följande funktionalitet för att det ska uppfylla kravet för godkänt.
+
+Ditt API ska kopplas mot en NoSQL databas tex. mongoDB.
+Alla svar från databasen ska skickas till användaren som JSON.
+Man ska kunna hämta alla produkter från databasen med hjälp av en GET
+Man ska kunna hämta en enskild produkt med en GET
+Man ska kunna lägga till en produkt med en POST
+Man ska kunna uppdatera en produkt med en PUT
+Man ska kunna ta bort en produkt med DELETE
+
+
+För väl godkänt som betyg ska du även ha följande funktionalitet.
+
+Man ska kunna registrera en användare med en POST och användaren ska då få en jsonwebtoken tillbaka som innehåller relevant information.
+Man ska kunna logga in en registrerad användare med en POST och användaren ska då få en jsonwebtoken tillbaka som innehåller relevant information.
+Man ska kunna spara en order om man är inloggad. Ordern ska innehålla en lista av order-rader. Varje order-rad ska innehålla en produkt samt hur många av den produkten som är tilllagda.
+Varje order ska vara kopplad till en specifik användare.
+Man ska kunna hämta alla ordrar som är kopplade till den specifika användaren som är inloggad genom att göra en GET och skicka med en Bearer token.
+
+
+
+
+
+
+Inlämning av uppgiften
+
+
+Inlämningen sker genom att du skriver en kommentar med din github-länk till ditt projekt här under inlämningen. 
+
+VIKTIGT! Se till att din github-länk faktiskt fungerar och att det finns innehåll på din repository.
+
+
+
+Viktigt!
+
+
+Se till att Network Access på MongoDb är öppet för alla IP adresser
+
+Om ni har använt er av en .env fil så måste ni antingen skicka med den upp på github eller kopiera och klistra in innehållet från den här nedanför
