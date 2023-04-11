@@ -1,61 +1,34 @@
 const mongoose = require('mongoose');
 const Order = require('../schemas/orderSchemas')
 
-exports.createNewOrder = (req, res) => {
+// Create a new order
+exports.createNewOrder = async (req, res) => {
+  const { orderRows } = req.body;
 
-    const { orderRows } = req.body;
+  if (!orderRows) {
+    return res.status(400).json({
+      message: 'You need to enter all the fields',              // Return a 400 response with an error message if orderRows is not provided
+    });
+  }
 
-    if(!orderRows) {
-        return res.status(400).json({
-            message: 'You need to enter all the fields'
-        })
-    }
+  try {
+    const data = await Order.create({                           // Use the Order schema to create a new order with the provided orderRows and userId
+      orderRows,
+      userId: req.userId,
+    });
 
-    Order.create({ 
-        orderRows,
-        userId: req.userId
-    })
-    .then(data => {
-        res.status(201).json({ userId: data.userId });
-    })
-    .catch(err => {
-        return res.status(500).json({
-            message: 'Something went wrong when generating the order',
-            err: err.message
-        })
-    })
-
+    res.status(201).json({ userId: data.userId });              // Return a 201 response with the userId of the newly created order
+  } catch (err) {
+    return res.status(500).json({
+      message: 'Something went wrong when creating the order', // Return a 500 response with an error message if an error occurs
+      err: err.message,
+    });
+  }
 }
 
+// Get all orders for a logged-in user
 exports.getOrders = async (req, res) => {
-    //Get all orders connected to the logged in persons
-    const orders = await Order.find({ userId: req.userId })
+  const orders = await Order.find({ userId: req.userId });      // Use the Order schema to find all orders with the logged-in userId
 
-    res.status(200).json(orders)
+  res.status(200).json(orders);                                 // Return a 200 response with the orders found
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// exports.createOrder = (req, res) => {
-
-//     this.createOrder.create({
-//         userId: req.userData._id,
-//         orderRows: req.body.rows
-//     })
-// }
-
-// exports.getMyOrders = (req, res) => {
-    
-//     Order.find({ userId: 'jködasjgöhkhag'})
-// }
