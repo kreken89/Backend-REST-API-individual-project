@@ -1,6 +1,9 @@
 const router = require('express').Router();
-const { createNewOrder } = require('../models/orderModel');
+const { verifyToken } = require('../authentication/auth');
+const { createNewOrder, getOrders } = require('../models/orderModel');
 
-router.post('/', createNewOrder );
+router.post('/add', verifyToken, createNewOrder );
+
+router.get('/myOrders', verifyToken, getOrders);
 
 module.exports = router

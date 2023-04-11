@@ -13,7 +13,7 @@ exports.createNewOrder = (req, res) => {
 
     Order.create({ 
         orderRows,
-        userId: new mongoose.Types.ObjectId()
+        userId: req.userId
     })
     .then(data => {
         res.status(201).json({ userId: data.userId });
@@ -26,6 +26,25 @@ exports.createNewOrder = (req, res) => {
     })
 
 }
+
+exports.getOrders = async (req, res) => {
+    //Get all orders connected to the logged in persons
+    const orders = await Order.find({ userId: req.userId })
+
+    res.status(200).json(orders)
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // exports.createOrder = (req, res) => {

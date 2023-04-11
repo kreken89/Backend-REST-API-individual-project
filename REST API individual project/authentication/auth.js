@@ -10,8 +10,8 @@ exports.generateToken = (user) => {
 exports.verifyToken = (req, res, next) => {
     try {
         const token = req.headers.authorization.split(' ')[1];
-        // req.userData = jwt.verify(token, secretKey); Behöver vi ha ett helt object här? nej men kanske senare för orderraderna.
         req.userId = jwt.verify(token, secretKey)._id;
+
         next()
     } catch  {
         return res.status(401).json({

@@ -4,7 +4,7 @@ const auth = require('../authentication/auth');
 const { default: mongoose } = require('mongoose');
 
 exports.addUser = async (req, res) => {
-    const { firstName, lastName, password } = req.body;             //Detta "password" är det vi själva skriver i, typ BytMig123
+    const { firstName, lastName, password } = req.body;           
 
     if(!firstName || !lastName || !password ) {
         return res.status(400).json({
@@ -42,7 +42,7 @@ exports.login = async (req, res) => {
         }
 
 
-        const user = await User.findOne({ email })            //Vi hämtar en user från databasen
+        const user = await User.findOne({ email })           
 
         if(!user) {                                     
             return res.status(401).json({
@@ -50,7 +50,7 @@ exports.login = async (req, res) => {
             })
         }
 
-        const result = await bcrypt.compare(password, user.passwordHash) //Vi jämför lösenordet med det vi skrivit in, med den userns lösenord som vi hämtat ovan.
+        const result = await bcrypt.compare(password, user.passwordHash) 
 
         if(!result) {
             return res.status(401).json({
@@ -79,10 +79,6 @@ exports.removeUser = async (req, res) => {
 
 
 exports.updateUser = async (req, res) => {
-
-    // if(mongoose.Types.ObjectId.isValid(req.params.id))
-
-
 
     const user = await User.findOne({ _id: req.params.id })
     if(!user) {
