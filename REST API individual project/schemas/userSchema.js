@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { Schema } = mongoose; //Bryter ut Schema från mongoose
+const { Schema } = mongoose; 
 
 const userSchema = new Schema({
     firstName:      { type: String, required: true },
@@ -9,6 +9,7 @@ const userSchema = new Schema({
     email:          { type: String, lowercase: true },
     passwordHash:   { type: String, required: true }
 })
+
 
 
 module.exports = mongoose.model('User', userSchema)
