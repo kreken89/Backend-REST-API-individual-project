@@ -1,3 +1,4 @@
 node_modules
+.env
 
 # .env  Ta bort denna sedan innan du laddar upp public
